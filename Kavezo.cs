@@ -8,7 +8,7 @@ internal class Kavezo
     public void Rendel(Lakos lakos, string termekNev)
     {
         var termek = Menu.FirstOrDefault(e => e.Nev == termekNev);
-        if (termek != null && lakos.Fizet(termek.Ar))
+        if (termek != null)
         {
             Vendeglista.Add(lakos);
             Console.WriteLine($"{lakos.Nev} rendelt: {termek.Nev}");
