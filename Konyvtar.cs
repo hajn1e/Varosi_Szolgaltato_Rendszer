@@ -3,19 +3,24 @@ namespace Varosi_Szolgaltato_Rendszer;
 internal class Konyvtar
 {
    public List<Konyv> konyvlista = new List<Konyv>();
-   public int MaximalisKpacitas { get; set; }
-
-   public void HozzaadKony(Konyv konyv)
+   private int MaximalisKapacitas;
+    
+   public Konyvtar(int maximalisKapacitas)
    {
-       
-       if (konyvlista.Count > MaximalisKpacitas)
-       {
-           Console.WriteLine("Megtelt a knyvtár nem lehet több önyvet hozzáadni");
-       }
-       else
+       MaximalisKapacitas = maximalisKapacitas> 0 ? maximalisKapacitas : throw new ArgumentException("A kapacitásnak pozitívnak kell lennie.");
+   }
+   
+   public void HozzaadKonyv(Konyv konyv)
+   {
+       if (konyvlista.Count < MaximalisKapacitas)
        {
            konyvlista.Add(konyv);
            Console.WriteLine($"{konyv.Cim} sikeresen hozzáadva a könyvtárhoz");
+           
+       }
+       else
+       {
+           Console.WriteLine("Megtelt a könyvtár nem lehet több könyvet hozzáadni");
        }
    }
    
@@ -24,11 +29,11 @@ internal class Konyvtar
        if (konyvlista.Contains(konyv) && konyv.Peldanyszam > 0)
        {
            konyv.Peldanyszam--;
-           Console.WriteLine($"{lakos.Nev} sikeresen kikölcsönözte {konyv.Cim}");
+           Console.WriteLine($"{lakos.Nev} sikeresen kikölcsönözte {konyv.Cim} könyvet");
        }
        else
        {
-           Console.WriteLine("nem sikerült");
+           Console.WriteLine($"{lakos.Nev} nem sikerült kikölcsönöznie a könyvet");
        }
    }
 

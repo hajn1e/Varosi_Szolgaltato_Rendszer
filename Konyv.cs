@@ -8,4 +8,13 @@ internal class Konyv
     public int Ertek { get;  }
     public int Peldanyszam { get; set; }
     
+    public Konyv(string cim, string szerzo, int oldalszam, int ertek, int peldanyszam)
+    {
+        Cim = cim;
+        Szerzo = szerzo;
+        Oldalszam = oldalszam;
+        Ertek = ertek;
+        Peldanyszam = peldanyszam;
+    }
+    
 }

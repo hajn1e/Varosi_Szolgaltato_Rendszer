@@ -2,7 +2,6 @@ namespace Varosi_Szolgaltato_Rendszer;
 
 internal class Varos
 {
-    //Tartalmazza az összes szolgáltatás objektumát, valamint lakókat.
     private List<object> szolgaltatok= new();
     private List<Lakos> lakosok = new();
     

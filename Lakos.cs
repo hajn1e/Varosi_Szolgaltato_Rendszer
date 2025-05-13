@@ -20,16 +20,16 @@ internal class Lakos
         Console.WriteLine($"{Nev} sikeresen belépett {szolgaltatas} szolgáltatásba");
     }
 
-    public void Fizet(int osszeg)
+    public bool Fizet(int osszeg)
     {
         if (osszeg <= Penzosszeg)
         {
             Penzosszeg -= osszeg;
-            Console.WriteLine($"{Nev} fizet {osszeg} osszeg");
-        }
-        else
+            return true;
+        }else
         {
-            Console.WriteLine("Fizetés nem sikerült");
+            
+            return false;
         }
     }
 
@@ -38,5 +38,8 @@ internal class Lakos
         jarmu.Felszallas(this);
     }
 
-   
+   public override string ToString()
+   {
+        return $"{Nev}, {Eletkor} éves, lakcím: {Lakcim}, pénzösszeg: {Penzosszeg} Ft";
+    }
 }
