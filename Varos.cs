@@ -3,48 +3,38 @@ namespace Varosi_Szolgaltato_Rendszer;
 internal class Varos
 {
     //Tartalmazza az összes szolgáltatás objektumát, valamint lakókat.
-    private List<Szolgaltatas> szolgaltatok;
-    private List<Lakos> lakosok = new List<Lakos>();
-
-    public Varos()
+    private List<object> szolgaltatok= new();
+    private List<Lakos> lakosok = new();
+    
+    public void HozzaadLakos(Lakos lakos)
     {
-        szolgaltatok = new List<Szolgaltato>();
-        lakosok = new List<Lakos>();
-    }
-
-    public void NapFutasa()
-    {
-        //A városban lévő szolgáltatások napjának futása
-        foreach (var szolgaltato in szolgaltatok)
+        if (lakos != null)
         {
-            szolgaltato.NapFutasa();
+            lakosok.Add(lakos);
+            Console.WriteLine($"{lakos.Nev} lakos hozzáadva a városhoz.");
         }
     }
-    
-    public void LakosokHozzaadasa(Lakos lakos)
+
+    public void Napfutasa()
     {
-        //Lakosok hozzáadása a városhoz
-        lakosok.Add(lakos);
+        Console.WriteLine("Eltelt egy nap a városban.");
     }
     
-    public void SzolgaltatasInditasa(Szolgaltato szolgaltato)
+    public void SzolgaltatasInditasa(object szolgaltatas)
     {
-        //Szolgáltatás indítása
-        szolgaltatok.Add(szolgaltato);
+        if (szolgaltatas != null)
+        {
+            szolgaltatok.Add(szolgaltatas);
+            Console.WriteLine($"{szolgaltatas.GetType().Name} szolgáltatás elindult.");
+        }
     }
     
     public void VarosStatusza()
     {
-        //A város állapotának kiírása
-        Console.WriteLine("A város állapota:");
-        foreach (var szolgaltato in szolgaltatok)
-        {
-            Console.WriteLine(szolgaltato);
-        }
-        
+        Console.WriteLine($"A városban {lakosok.Count} lakos és {szolgaltatok.Count} szolgáltatás található.");
         foreach (var lakos in lakosok)
         {
-            Console.WriteLine(lakos);
+            Console.WriteLine(lakos.ToString());
         }
     }
 }
